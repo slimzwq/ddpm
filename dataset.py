@@ -22,6 +22,8 @@ def download_dataset():
 
 
 def get_dataloader(batch_size: int):
+    # align the image data range the same as gaussian distribution
+    # (0, 1) -> (-1, 1)
     transform = Compose([ToTensor(), Lambda(lambda x: (x - 0.5) * 2)])
     dataset = torchvision.datasets.MNIST(root='./mnist',
                                          transform=transform)
